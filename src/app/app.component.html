@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">Facebook like app</mat-toolbar>
+
+<mat-card style="padding: 15px;">
+    <form>
+        <mat-form-field>
+            <input
+             matInput
+             type="text"
+             name="autore"
+             #autore
+             required
+             minlength="3"
+             placeholder="Autore Post">
+             <mat-error *ngIf="autore.invalid">Inserire autore (min. 3 lettere)</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea
+             matInput
+             rows="6"
+             name="testo"
+             #testo
+             ngModel
+             #postInput
+             required
+             placeholder="Contenuto Post"></textarea>
+            <mat-error *ngIf="testo.invalid">Inserire contenuto</mat-error>
+        </mat-form-field>
+        <button
+         mat-raised-button
+         color="warn"
+         (click)="inserisci(autore.value, testo.value)">Save Post</button>
+    </form>
+</mat-card>
+
+<div>
+    <app-post *ngFor="let p of posts" [post]="p"></app-post>
+</div>
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0">No posts yet</p>

@@ -6,7 +6,7 @@
     <hr>
     <h3>Commenti</h3>
     <mat-card style="padding: 15px; margin: auto; width: 40%;">
-        <form>
+        <form (submit)="post.addCommento(autore.value, testo.value)">
             <mat-form-field>
                 <input
                  matInput
@@ -33,7 +33,7 @@
             <button
              mat-raised-button
              color="warn"
-             (click)="post.addCommento(autore.value, testo.value)">Save Post</button>
+             type="sumbit">Save Post</button>
         </form>
     </mat-card>
     <mat-card style="margin-top: 10px;" *ngFor="let c of post.commenti">

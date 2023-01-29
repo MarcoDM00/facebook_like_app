@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">Facebook like app</mat-toolbar>
 
 <mat-card style="padding: 15px;">
-    <form>
+    <form (submit)="inserisci(autore.value, testo.value)">
         <mat-form-field>
             <input
              matInput
@@ -11,7 +11,6 @@
              required
              minlength="3"
              placeholder="Autore Post">
-             <mat-error *ngIf="autore.invalid">Inserire autore (min. 3 lettere)</mat-error>
         </mat-form-field>
         <mat-form-field>
             <textarea
@@ -23,12 +22,11 @@
              #postInput
              required
              placeholder="Contenuto Post"></textarea>
-            <mat-error *ngIf="testo.invalid">Inserire contenuto</mat-error>
         </mat-form-field>
         <button
          mat-raised-button
          color="warn"
-         (click)="inserisci(autore.value, testo.value)">Save Post</button>
+         type="submit">Save Post</button>
     </form>
 </mat-card>
 

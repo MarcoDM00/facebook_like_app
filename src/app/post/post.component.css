@@ -5,6 +5,7 @@
 mat-form-field,
 textarea {
     width: 100%;
+    margin-left: 0;
 }
 
 button {
@@ -13,4 +14,10 @@ button {
 
 mat-error {
     font-size: 1rem;
+}
+
+mat-panel-title,
+mat-panel-description,
+span {
+  display: block;
 }

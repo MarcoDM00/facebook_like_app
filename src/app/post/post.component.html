@@ -1,47 +1,56 @@
 <mat-expansion-panel>
-    <mat-expansion-panel-header>
-        {{post.autore}}
+    <mat-expansion-panel-header [collapsedHeight]="'70px'">
+        <mat-panel-title>
+            <span>User:</span>
+             <span>{{post.autore}}</span>
+         </mat-panel-title>
+         <mat-panel-description style="color: black">
+           <span>Post: </span>
+           <span>{{post.testo}}</span>
+         </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{post.testo}}</p>
     <hr>
-    <h3>Commenti</h3>
-    <mat-card style="padding: 15px; margin: auto; width: 40%;">
-        <form (submit)="post.addCommento(autore.value, testo.value)">
-            <mat-form-field>
-                <input
-                 matInput
-                 type="text"
-                 name="autore"
-                 #autore
-                 required
-                 minlength="3"
-                 placeholder="Autore Commento">
-                 <mat-error *ngIf="autore.invalid">Inserire autore (min. 3 lettere)</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <textarea
-                 matInput
-                 rows="6"
-                 name="testo"
-                 #testo
-                 ngModel
-                 #postInput
-                 required
-                 placeholder="Contenuto Commento"></textarea>
-                <mat-error *ngIf="testo.invalid">Inserire contenuto</mat-error>
-            </mat-form-field>
-            <button
-             mat-raised-button
-             color="warn"
-             type="sumbit">Save Post</button>
-        </form>
-    </mat-card>
-    <mat-card style="margin-top: 10px;" *ngFor="let c of post.commenti">
-        <p>{{c.autore}}</p>
-        <p>{{c.testo}}</p>
-    </mat-card>
+        <h3>Commenti</h3>
+        <mat-card style="margin-bottom: 15px;" *ngFor="let c of post.commenti">
+            <p>{{c.autore}}</p>
+            <p>{{c.testo}}</p>
+        </mat-card>
+    <div [hidden]="nascondiCommenti">
+        <mat-card style="padding: 15px; margin: auto; width: 40%;">
+            <form (submit)="post.addCommento(autore.value, testo.value); nascondiCommenti = !nascondiCommenti;">
+                <mat-form-field>
+                    <input
+                    matInput
+                    type="text"
+                    name="autore"
+                    #autore
+                    required
+                    minlength="3"
+                    placeholder="Autore Commento">
+                    <mat-error *ngIf="autore.invalid">Inserire autore (min. 3 lettere)</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea
+                    matInput
+                    rows="6"
+                    name="testo"
+                    #testo
+                    ngModel
+                    #postInput
+                    required
+                    placeholder="Contenuto Commento"></textarea>
+                    <mat-error *ngIf="testo.invalid">Inserire contenuto</mat-error>
+                </mat-form-field>
+                <button
+                mat-raised-button
+                color="primary"
+                type="sumbit">Save Comment</button>
+            </form>
+        </mat-card>
+    </div>
     <mat-action-row>
         <button (click)="post.addLike()" mat-button color="primary">{{post.like}} Like</button>
         <button (click)="post.addDislike()" mat-button color="warn">{{post.dislike}} Dislike</button>
+        <button (click)="nascondiCommenti = !nascondiCommenti">Commenti</button>
     </mat-action-row>
 </mat-expansion-panel>

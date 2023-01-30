@@ -8,4 +8,5 @@ import { Post } from '../post.module';
 })
 export class PostComponent {
   @Input() post:Post;
+  nascondiCommenti:boolean = true;
 }

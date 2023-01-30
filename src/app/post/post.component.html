@@ -17,7 +17,7 @@
         </mat-card>
     <div [hidden]="nascondiCommenti">
         <mat-card style="padding: 15px; margin: auto; width: 40%;">
-            <form (submit)="post.addCommento(autore.value, testo.value); nascondiCommenti = !nascondiCommenti;">
+            <form (submit)="nascondiCommenti = !nascondiCommenti; post.addCommento(autore.value, testo.value)">
                 <mat-form-field>
                     <input
                     matInput
@@ -51,6 +51,6 @@
     <mat-action-row>
         <button (click)="post.addLike()" mat-button color="primary">{{post.like}} Like</button>
         <button (click)="post.addDislike()" mat-button color="warn">{{post.dislike}} Dislike</button>
-        <button (click)="nascondiCommenti = !nascondiCommenti">Commenti</button>
+        <button (click)="nascondiCommenti = !nascondiCommenti" mat-button color="success">Commenti</button>
     </mat-action-row>
 </mat-expansion-panel>
